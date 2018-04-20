@@ -375,6 +375,7 @@ if (has("gui_running") || g:solarized_termtrans == 0)
     let s:back        = s:base03
 else
     let s:back        = "NONE"
+    let s:base02      = "0"
 endif
 "}}}
 " Alternate light scheme "{{{
@@ -657,7 +658,7 @@ exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
 exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
     endif
 endif
-exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0  .s:bg_back
+exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0  .s:bg_base03
 exe "hi! Conceal"        .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
 exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
@@ -672,6 +673,7 @@ exe "hi! TabLineFill"    .s:fmt_undr   .s:fg_base0  .s:bg_base02  .s:sp_base0
 exe "hi! TabLineSel"     .s:fmt_undr   .s:fg_base01 .s:bg_base2   .s:sp_base0  .s:fmt_revbbu
 exe "hi! CursorColumn"   .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! CursorLine"     .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
+exe "hi! CursorLineNr"   .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
 exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
@@ -759,6 +761,11 @@ hi! link gitcommitUnmergedArrow  gitcommitUnmergedFile
 "exe "hi! gitcommitArrow"
 "exe "hi! gitcommitOverflow"
 "exe "hi! gitcommitBlank"
+" }}}
+" vim-gitgutter highlighting {{{
+exe "hi! lineAdded"         .s:fmt_bold .s:fg_green  .s:bg_base02
+exe "hi! lineModified"      .s:fmt_bold .s:fg_yellow .s:bg_base02
+exe "hi! lineRemoved"       .s:fmt_bold .s:fg_red    .s:bg_base02
 " }}}
 " html highlighting "{{{
 " ---------------------------------------------------------------------
