@@ -145,12 +145,15 @@ let s:terms_noitalic=[
             \"iTerm.app",
             \"Apple_Terminal"
             \]
+
+let s:term_env_var = has('unix') ? $TERM : $TERM_PROGRAM
+
 if has("gui_running")
     let s:terminal_italic=1 " TODO: could refactor to not require this at all
 else
     let s:terminal_italic=0 " terminals will be guilty until proven compatible
     for term in s:terms_italic
-        if $TERM_PROGRAM =~ term
+        if s:term_env_var =~ term
             let s:terminal_italic=1
         endif
     endfor
@@ -205,7 +208,7 @@ function! s:SetOption(name,default)
     endif
 endfunction
 
-if ($TERM_PROGRAM ==? "apple_terminal" && &t_Co < 256)
+if (s:term_env_var ==? "apple_terminal" && &t_Co < 256)
     let s:solarized_termtrans_default = 1
 else
     let s:solarized_termtrans_default = 0
@@ -609,8 +612,8 @@ else
     exe "hi! SpecialKey" .s:fmt_bold   .s:fg_base00 .s:bg_base02
     exe "hi! NonText"    .s:fmt_bold   .s:fg_base00 .s:bg_none
 endif
-exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base02 .s:fmt_revbb
-exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base00 .s:bg_base02 .s:fmt_revbb
+exe "hi! StatusLine"     .s:fmt_none   .s:fg_base1  .s:bg_base03 .s:fmt_revbb
+exe "hi! StatusLineNC"   .s:fmt_none   .s:fg_base00 .s:bg_base03 .s:fmt_revbb
 exe "hi! Visual"         .s:fmt_none   .s:fg_base01 .s:bg_base03 .s:fmt_revbb
 exe "hi! Directory"      .s:fmt_none   .s:fg_blue   .s:bg_none
 exe "hi! ErrorMsg"       .s:fmt_revr   .s:fg_red    .s:bg_none
